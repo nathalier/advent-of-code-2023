@@ -22,10 +22,10 @@ def part_2(data):
     
     sub_pat = 'one|two|three|four|five|six|seven|eight|nine|[0-9]'
 
-    first_digit = lambda line: re.search(f'(?!{sub_pat})*({sub_pat}).*', line).group(1)
-    last_digit = lambda line: re.search(f'.*({sub_pat})(?!{sub_pat})', line).group(1)
+    to_digits = lambda line: list(map(to_digit, re.findall(f'(?=({sub_pat}))', line)))
+    digit_lines = [to_digits(line) for line in data]
     
-    return sum(map(lambda l: int(to_digit(first_digit(l)) + to_digit(last_digit(l))), data))
+    return sum((int(digits[0] + digits[-1]) for digits in digit_lines))
 
 
 def read_data(filename):
