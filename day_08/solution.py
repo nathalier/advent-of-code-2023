@@ -2,6 +2,14 @@ from itertools import cycle
 from math import lcm
 import re
 
+"""
+The solution of p.2 is actually is not completely correct, 
+as I'm breaking at the first found 'Z'-position while it's possible that the next 'Z'-position 
+for a ghost would give better result. 
+I.e. LCM(5, 14) = 70; while it's possible that the first ghost finds 'Z'-position at 7th step as well.
+Then LCM(7, 17) = 14. But this simple, technically invalid, solution worked on my entry:-)
+"""
+
 
 def parse_map(data):
     g_map = {} 
